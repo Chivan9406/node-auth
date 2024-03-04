@@ -18,4 +18,3 @@ export class FileUploadRoutes {
         return router
     }
 }
-

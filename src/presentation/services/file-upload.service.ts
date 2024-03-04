@@ -6,7 +6,7 @@ import {CustomError} from '../../domain'
 
 export class FileUploadService {
     constructor(
-        private readonly uuid = Uuid.v4()
+        private readonly uuid = Uuid.v4
     ) {
     }
 
@@ -31,7 +31,7 @@ export class FileUploadService {
             const destination = path.resolve(__dirname, '../../../', folder)
             this.checkFolder(destination)
 
-            const fileName = `${this.uuid}.${fileExtension}`
+            const fileName = `${this.uuid()}.${fileExtension}`
             await file.mv(`${destination}/${fileName}`)
             return {fileName}
 
@@ -47,8 +47,8 @@ export class FileUploadService {
     ) {
         const fileNames = await Promise.all(
             files.map(file => this.uploadSingle(file, folder, validExtensions))
-        );
+        )
 
-        return fileNames;
+        return fileNames
     }
 }
